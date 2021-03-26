@@ -1,12 +1,14 @@
 # Storage Space
 
-Get the free, available and total storage space for the device.
+Get the free, available and total disk space for the device.
 
-There is a utility helper for human-readable sizes.
+The `StorageSpace` model contains values in bytes and human-readable versions.
+
+The `lowOnSpace` flag shows when the device is low on space. The threshhold is up to you.
 
 ## Usage
 
-```
+```dart
 StorageSpace freeSpace = await getStorageSpace(
   lowOnSpaceThreshold: 2 * 1024 * 1024 * 1024, // 2GB
   fractionDigits: 1, // How many digits to use for the human-readable values
