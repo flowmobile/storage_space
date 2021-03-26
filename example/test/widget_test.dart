@@ -1,27 +1,16 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility that Flutter provides. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+/*
+TODO: Later
 
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:storage_space_example/main.dart';
+import 'package:storage_space/storage_space.dart';
 
 void main() {
-  testWidgets('Verify Platform version', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
-
-    // Verify that platform version is retrieved.
-    expect(
-      find.byWidgetPredicate(
-        (Widget widget) =>
-            widget is Text && widget.data.startsWith('Running on:'),
-      ),
-      findsOneWidget,
-    );
+  test('adds one to input values', () {
+    final calculator = Calculator();
+    expect(calculator.addOne(2), 3);
+    expect(calculator.addOne(-7), -6);
+    expect(calculator.addOne(0), 1);
+    expect(() => calculator.addOne(null), throwsNoSuchMethodError);
   });
 }
+*/
