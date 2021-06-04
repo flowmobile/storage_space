@@ -49,9 +49,8 @@ public class StorageSpacePlugin: FlutterPlugin, MethodCallHandler {
     }
     else if(call.method == "getTotalSpace"){
       val stat = StatFs(Environment.getDataDirectory().getPath())
-      val bytesAvailable = stat.getFreeBytes()
-      val bytesOccupied = stat.getTotalBytes()
-      result.success(bytesOccupied+bytesAvailable)
+      val bytesTotal = stat.getTotalBytes()
+      result.success(bytesTotal)
     }
     else {
       result.notImplemented()
