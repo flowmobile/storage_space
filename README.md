@@ -24,10 +24,13 @@ The example directory shows how to use StorageSpace package to render a "progres
 
 ## Background
 
-This package is a reworking of three packages:
+This package is a reworking of [disk_space](https://pub.dev/packages/disk_space) and [storage_capacity](https://pub.dev/packages/storage_capacity).
 
-* https://pub.dev/packages/disk_space
-* https://pub.dev/packages/storage_capacity
-* https://pub.dev/packages/filesize
+The reworking adds `null-safety`, as well as some convenience features:
 
-The end result is a simple package that is null-safe and can be easily maintained.
+* A single method-call for all properties in a `StorageSpace` class
+* All values in `bytes` **and** human-readable, ie: 12.1 MB, 8 GB, 1.5 TB etc.
+* Usage as a percent
+* A flag to show if the system is low-on-space. The threshold is user-defined
+
+Take a peek at the [StorageSpace class](https://pub.dev/documentation/storage_space/latest/storage_space/StorageSpace-class.html) in the API reference for more details.

@@ -1,3 +1,6 @@
+## 1.0.0+2
+Better readme
+
 ## 1.0.0+1
 Better documentation
 
