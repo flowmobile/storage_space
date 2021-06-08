@@ -1,3 +1,6 @@
+## 1.0.1
+Fix for incorrect reporting of total space in android
+
 ## 1.0.0+2
 Better readme
 
