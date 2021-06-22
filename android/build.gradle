@@ -1,4 +1,4 @@
-group 'com.oodavid.storage_space'
+group 'flowmobile.storage_space'
 version '1.0-SNAPSHOT'
 
 buildscript {

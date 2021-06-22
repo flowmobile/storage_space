@@ -19,8 +19,8 @@ StorageSpace freeSpace = await getStorageSpace(
 
 The example directory shows how to use StorageSpace package to render a "progress meter" that renders a warning when the device is low on space
 
-<img width="210" src="https://raw.githubusercontent.com/oodavid/storage_space/master/screenshots/normal.png" />
-<img width="210" src="https://raw.githubusercontent.com/oodavid/storage_space/master/screenshots/lowOnSpace.png" />
+<img width="210" src="https://raw.githubusercontent.com/flowmobile/storage_space/master/screenshots/normal.png" />
+<img width="210" src="https://raw.githubusercontent.com/flowmobile/storage_space/master/screenshots/lowOnSpace.png" />
 
 ## Background
 

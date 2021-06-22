@@ -1,8 +1,8 @@
 name: storage_space
 description: Get the free, available and total storage space for the device. Utility helpers for readable sizes
-version: 1.0.1
-homepage: https://github.com/oodavid/storage_space
-repository: https://github.com/oodavid/storage_space
+version: 1.0.1+5
+homepage: https://github.com/flowmobile/storage_space
+repository: https://github.com/flowmobile/storage_space
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -20,7 +20,7 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.oodavid.storage_space
+        package: flowmobile.storage_space
         pluginClass: StorageSpacePlugin
       ios:
         pluginClass: StorageSpacePlugin
