@@ -1,4 +1,4 @@
-package flowmobile.storage_space_example
+package com.example.example
 
 import io.flutter.embedding.android.FlutterActivity
 
