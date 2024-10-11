@@ -4,6 +4,8 @@ Get the free, available and total disk space for the device.
 
 The `StorageSpace` model contains values in bytes and human-readable versions.
 
+The `lowOnSpaceThreshold` triggers `lowOnSpace` to be set to true when the value is less than or equal to it (including when the value is equal).
+
 The `lowOnSpace` flag shows when the device is low on space. The threshhold is up to you.
 
 ## Usage
