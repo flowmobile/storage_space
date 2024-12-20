@@ -9,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath 'com.android.tools.build:gradle:7.4.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -26,9 +26,15 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 28
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
     defaultConfig {
         minSdkVersion 16
@@ -36,6 +42,8 @@ android {
     lintOptions {
         disable 'InvalidPackage'
     }
+
+    namespace 'flowmobile.storage_space'
 }
 
 dependencies {

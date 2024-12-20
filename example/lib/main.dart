@@ -60,7 +60,7 @@ class _MyAppState extends State<MyApp> {
                   if (_storageSpace == null) ...[
                     Text(
                       'Loading',
-                      style: Theme.of(context).textTheme.headline4,
+                      style: Theme.of(context).textTheme.headlineSmall,
                     ),
                   ],
                   if (_storageSpace != null) ...[
@@ -68,18 +68,18 @@ class _MyAppState extends State<MyApp> {
                       children: [
                         Text(
                           '${_storageSpace?.freeSize}',
-                          style: Theme.of(context).textTheme.headline3,
+                          style: Theme.of(context).textTheme.headlineSmall,
                         ),
                         if (_storageSpace?.lowOnSpace != true) ...[
                           Text(
                             'Remaining',
-                            style: Theme.of(context).textTheme.headline6,
+                            style: Theme.of(context).textTheme.headlineSmall,
                           ),
                         ],
                         if (_storageSpace?.lowOnSpace == true) ...[
                           Text(
                             'Low On Space',
-                            style: Theme.of(context).textTheme.headline6,
+                            style: Theme.of(context).textTheme.titleSmall,
                           ),
                         ],
                       ],
