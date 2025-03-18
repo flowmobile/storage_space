@@ -26,6 +26,7 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 28
+    namespace "flowmobile.storage_space"
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
