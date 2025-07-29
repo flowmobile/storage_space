@@ -12,18 +12,35 @@ public class SwiftStorageSpacePlugin: NSObject, FlutterPlugin {
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         if call.method == "getFreeSpace" {
             do {
-                let attributes = try FileManager.default.attributesOfFileSystem(forPath: NSHomeDirectory())
-
-                return result(attributes[FileAttributeKey.systemFreeSize] as! Int64)
+                if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+                    let resourceValues = try documentDirectory.resourceValues(forKeys: [.volumeAvailableCapacityForImportantUsageKey])
+                    if let freeSpace = resourceValues.volumeAvailableCapacityForImportantUsage {
+                        return result(freeSpace)
+                    }
+                }
+                result(FlutterError(code: "NO_SPACE_INFO",
+                                    message: "Could not get free space info",
+                                    details: nil))
             } catch {
-                return result("")
+                result(FlutterError(code: "ERROR",
+                                    message: error.localizedDescription,
+                                    details: nil))
             }
         } else if call.method == "getTotalSpace" {
             do {
-                let attributes = try FileManager.default.attributesOfFileSystem(forPath: NSHomeDirectory())
-                return result(attributes[FileAttributeKey.systemSize] as! Int64)
+                if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+                    let resourceValues = try documentDirectory.resourceValues(forKeys: [.volumeTotalCapacityKey])
+                    if let totalSpace = resourceValues.volumeTotalCapacity {
+                        return result(totalSpace)
+                    }
+                }
+                result(FlutterError(code: "NO_SPACE_INFO",
+                                    message: "Could not get total space info",
+                                    details: nil))
             } catch {
-                return result("")
+                result(FlutterError(code: "ERROR",
+                                    message: error.localizedDescription,
+                                    details: nil))
             }
         }
     }
