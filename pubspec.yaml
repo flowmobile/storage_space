@@ -1,6 +1,6 @@
 name: storage_space
 description: Get the free, available and total storage space for the device. Utility helpers for readable sizes
-version: 1.1.0
+version: 1.2.0
 homepage: https://github.com/flowmobile/storage_space
 repository: https://github.com/flowmobile/storage_space
 
