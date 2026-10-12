@@ -1,16 +1,26 @@
-/*
-TODO: Later
-
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:storage_space/storage_space.dart';
+import 'package:storage_space_example/main.dart';
 
 void main() {
-  test('adds one to input values', () {
-    final calculator = Calculator();
-    expect(calculator.addOne(2), 3);
-    expect(calculator.addOne(-7), -6);
-    expect(calculator.addOne(0), 1);
-    expect(() => calculator.addOne(null), throwsNoSuchMethodError);
+  testWidgets('shows the free space once loaded', (WidgetTester tester) async {
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(const MethodChannel('storage_space'),
+            (MethodCall call) async {
+      switch (call.method) {
+        case 'getFreeSpace':
+          return 16 * 1024 * 1024 * 1024;
+        case 'getTotalSpace':
+          return 64 * 1024 * 1024 * 1024;
+      }
+      return null;
+    });
+
+    await tester.pumpWidget(MyApp());
+    expect(find.text('Loading'), findsOneWidget);
+
+    await tester.pump();
+    expect(find.text('16 GB'), findsOneWidget);
+    expect(find.text('Remaining'), findsOneWidget);
   });
 }
-*/

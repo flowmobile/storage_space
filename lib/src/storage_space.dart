@@ -102,7 +102,10 @@ String _toHuman(int bytes, int fractionDigits) {
 }
 
 /// Trims trailing zeros (and possibly the dot) from a string
+///
+/// Whole numbers (no dot) are returned untouched, so `10` stays `10`
 String _trimTrailingZeros(String value) {
+  if (!value.contains('.')) return value;
   RegExp regex = new RegExp(r"\.?0+$");
   return value.replaceAll(regex, '');
 }
