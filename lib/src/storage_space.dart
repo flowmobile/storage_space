@@ -3,6 +3,9 @@ import 'package:flutter/services.dart';
 
 class StorageSpace {
   /// Free space in Bytes
+  ///
+  /// This is the space available to apps, so it excludes any space the
+  /// system reserves for itself
   int free;
 
   /// Used space in Bytes

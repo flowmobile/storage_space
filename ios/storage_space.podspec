@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'storage_space'
-  s.version          = '1.3.0'
+  s.version          = '1.4.0'
   s.summary          = 'Get the free, available and total storage space for the device.'
   s.description      = <<-DESC
 Get the free, available and total storage space for the device, plus the storage used by the app itself.

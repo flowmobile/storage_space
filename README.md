@@ -4,6 +4,8 @@ Get the free, available and total disk space for the device, and the space used 
 
 The `StorageSpace` model contains values in bytes and human-readable versions.
 
+`free` is the space available to apps, so it leaves out any space the system reserves for itself. `used` is everything else (`total` - `free`).
+
 The `lowOnSpaceThreshold` triggers `lowOnSpace` to be set to true when the value is less than or equal to it (including when the value is equal).
 
 The `lowOnSpace` flag shows when the device is low on space. The threshold is up to you.
