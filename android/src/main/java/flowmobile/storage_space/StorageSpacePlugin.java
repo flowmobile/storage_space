@@ -45,7 +45,9 @@ public class StorageSpacePlugin implements FlutterPlugin, MethodCallHandler {
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
     switch (call.method) {
       case "getFreeSpace":
-        result.success(new StatFs(Environment.getDataDirectory().getPath()).getFreeBytes());
+        // Available bytes exclude the blocks reserved for the system, so this is
+        // the space apps can actually use (as on iOS)
+        result.success(new StatFs(Environment.getDataDirectory().getPath()).getAvailableBytes());
         break;
       case "getTotalSpace":
         result.success(new StatFs(Environment.getDataDirectory().getPath()).getTotalBytes());

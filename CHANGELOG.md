@@ -1,3 +1,7 @@
+## 1.4.0
+
+- **Behaviour change (Android):** `free` is now the space available to apps (`StatFs.getAvailableBytes()`), matching iOS. It used to include blocks reserved for the system (`getFreeBytes()`), so `free` is now slightly lower, `used` slightly higher, and `lowOnSpace` can trigger a little sooner
+
 ## 1.3.0
 
 - Add Swift Package Manager support for iOS (Flutter 3.44+). CocoaPods is still supported
