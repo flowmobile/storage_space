@@ -1,12 +1,12 @@
 # Storage Space
 
-Get the free, available and total disk space for the device.
+Get the free, available and total disk space for the device, and the space used by the app itself.
 
 The `StorageSpace` model contains values in bytes and human-readable versions.
 
 The `lowOnSpaceThreshold` triggers `lowOnSpace` to be set to true when the value is less than or equal to it (including when the value is equal).
 
-The `lowOnSpace` flag shows when the device is low on space. The threshhold is up to you.
+The `lowOnSpace` flag shows when the device is low on space. The threshold is up to you.
 
 ## Usage
 
@@ -16,6 +16,40 @@ StorageSpace freeSpace = await getStorageSpace(
   fractionDigits: 1, // How many digits to use for the human-readable values
 );
 ```
+
+### App storage usage
+
+`getAppStorageUsage` returns the space used by the app itself:
+
+```dart
+AppStorageUsage usage = await getAppStorageUsage(
+  fractionDigits: 1, // How many digits to use for the human-readable values
+);
+print('${usage.totalSize} (app ${usage.appSize}, data ${usage.dataSize})');
+```
+
+* `app` is the installed app (the APK on Android, the app bundle on iOS)
+* `data` is everything the app has stored, **including** its cache
+* `cache` is the app's cache
+* `total` is `app` + `data`
+
+On Android 8+ these match *Settings > Apps > Storage*. On iOS they add up the app bundle and the app's sandbox, which is close to *Settings > General > iPhone Storage* but not always identical. No permissions are needed on either platform.
+
+### Units
+
+The human-readable values use 1024-based units, so 1 GB is 1024³ bytes. iOS Settings, and Android 8+, use 1000-based units, so the same number of bytes shows up a bit smaller here (a 128 GB iPhone shows as about 119 GB). The raw values are always in bytes if you'd like to format them yourself.
+
+## Platform support
+
+| | Requirement |
+|---|---|
+| Flutter | 3.24+ (Dart 3.5+) |
+| Android | API 21+ |
+| iOS | 13+ |
+
+On iOS the plugin supports both **Swift Package Manager** and **CocoaPods**. Swift Package Manager integration needs Flutter 3.44 or later. On older Flutter versions, keep Swift Package Manager turned off so the plugin is installed with CocoaPods.
+
+The plugin ships an iOS [privacy manifest](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files) that declares its use of the disk space APIs with reasons `85F4.1` (displaying disk space to the user) and `E174.1` (checking whether there's enough space). Check that these fit how your app uses the information.
 
 ## Example
 
