@@ -12,11 +12,13 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   StorageSpace? _storageSpace;
+  AppStorageUsage? _appStorageUsage;
 
   @override
   void initState() {
     super.initState();
     initStorageSpace();
+    initAppStorageUsage();
   }
 
   void initStorageSpace() async {
@@ -26,6 +28,15 @@ class _MyAppState extends State<MyApp> {
     );
     setState(() {
       _storageSpace = storageSpace;
+    });
+  }
+
+  void initAppStorageUsage() async {
+    AppStorageUsage appStorageUsage = await getAppStorageUsage(
+      fractionDigits: 1,
+    );
+    setState(() {
+      _appStorageUsage = appStorageUsage;
     });
   }
 
@@ -87,6 +98,26 @@ class _MyAppState extends State<MyApp> {
                   ],
                 ],
               ),
+              if (_storageSpace != null) ...[
+                SizedBox(height: 24),
+                Text(
+                  '${_storageSpace?.usedSize} of ${_storageSpace?.totalSize} used',
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              ],
+              if (_appStorageUsage != null) ...[
+                SizedBox(height: 8),
+                Text(
+                  'This app uses ${_appStorageUsage?.totalSize}',
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+                Text(
+                  'App ${_appStorageUsage?.appSize} · '
+                  'Data ${_appStorageUsage?.dataSize} · '
+                  'Cache ${_appStorageUsage?.cacheSize}',
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ],
             ],
           ),
         ),

@@ -56,6 +56,41 @@ void main() {
     });
   });
 
+  group('getAppStorageUsage', () {
+    test('reads app, data and cache sizes from the platform', () async {
+      mockChannel({
+        'getAppStorageUsage': {
+          'app': 48 * mb,
+          'data': (1.5 * gb).round(),
+          'cache': 200 * mb,
+        },
+      });
+
+      final usage = await getAppStorageUsage(fractionDigits: 1);
+
+      expect(usage.app, 48 * mb);
+      expect(usage.data, (1.5 * gb).round());
+      expect(usage.cache, 200 * mb);
+      expect(usage.total, 48 * mb + (1.5 * gb).round());
+      expect(usage.appSize, '48 MB');
+      expect(usage.dataSize, '1.5 GB');
+      expect(usage.cacheSize, '200 MB');
+      expect(usage.totalSize, '1.5 GB');
+    });
+
+    test('propagates platform errors', () async {
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(channel, (MethodCall call) async {
+        throw PlatformException(code: 'APP_USAGE_ERROR');
+      });
+
+      expect(
+        getAppStorageUsage(fractionDigits: 1),
+        throwsA(isA<PlatformException>()),
+      );
+    });
+  });
+
   group('StorageSpace', () {
     StorageSpace space({
       required int free,
