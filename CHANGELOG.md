@@ -1,3 +1,15 @@
+## 1.3.0
+
+- Add Swift Package Manager support for iOS (Flutter 3.44+). CocoaPods is still supported
+- Add an iOS privacy manifest declaring the disk space required-reason APIs
+- Add `getAppStorageUsage()` for the space used by the app itself (#10)
+- Rewrite the Android plugin in Java, so it no longer depends on a Kotlin version
+- Build against Android compileSdk 36, and support apps on AGP 8 and AGP 9
+- iOS plugin is now pure Swift
+- Clean up the podspec: real metadata, and replace the legacy x86_64-only simulator setting
+- Fix human-readable sizes losing zeros when `fractionDigits` is 0 (10 B was shown as "1 B")
+- Requires Flutter 3.24+ / Dart 3.5+ and iOS 13+
+
 ## 1.2.0
 
 - Update namespace, jvm version and compile sdk version to support latest Android versions
