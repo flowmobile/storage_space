@@ -2,15 +2,16 @@ import Flutter
 import Foundation
 import UIKit
 
-public class SwiftStorageSpacePlugin: NSObject, FlutterPlugin {
+public class StorageSpacePlugin: NSObject, FlutterPlugin {
     public static func register(with registrar: FlutterPluginRegistrar) {
         let channel = FlutterMethodChannel(name: "storage_space", binaryMessenger: registrar.messenger())
-        let instance = SwiftStorageSpacePlugin()
+        let instance = StorageSpacePlugin()
         registrar.addMethodCallDelegate(instance, channel: channel)
     }
 
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-        if call.method == "getFreeSpace" {
+        switch call.method {
+        case "getFreeSpace":
             do {
                 if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
                     let resourceValues = try documentDirectory.resourceValues(forKeys: [.volumeAvailableCapacityForImportantUsageKey])
@@ -26,7 +27,7 @@ public class SwiftStorageSpacePlugin: NSObject, FlutterPlugin {
                                     message: error.localizedDescription,
                                     details: nil))
             }
-        } else if call.method == "getTotalSpace" {
+        case "getTotalSpace":
             do {
                 if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
                     let resourceValues = try documentDirectory.resourceValues(forKeys: [.volumeTotalCapacityKey])
@@ -42,6 +43,8 @@ public class SwiftStorageSpacePlugin: NSObject, FlutterPlugin {
                                     message: error.localizedDescription,
                                     details: nil))
             }
+        default:
+            result(FlutterMethodNotImplemented)
         }
     }
 }
